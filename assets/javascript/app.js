@@ -8,10 +8,10 @@ var indexCounter = 0;
 var counter = 15;
 
 var questionsObj = {
-	questions: ["what is A", "what is B", "what is C", "what is D"],
-	options: [["a","b","c","d"],["a","b","c","d"],["a","b","c","d"],["a","b","c","d"]],
-	answers: ["a","b","c","d"],
-	images: ["<img class='center-block' src='assets/images/curry.png'>", "<img class='center-block' src='assets/images/curry.png'>", "<img class='center-block' src='assets/images/curry.png'>", "<img class='center-block' src='assets/images/curry.png'>"]
+	questions: ["Who has attempted more 3-pointers than any other player in postseason history?", "Who has the second highest plus-minus in a season in the conference finals, minimum 70 plus-minus?", "Who was the last player with 30 PPG in a season in the playoffs vs the Spurs?", "Who has the most career games with 6 or more 3PM in the conference finals? "],
+	options: [["LeBron James","Klay Thompson","Kyrie Irving","Steph Curry"],["Derek Fisher","Kevin Durant","LeBron James","Kobe Bryant"],["LeBron James","Klay Thompson","Kyrie Irving","Steph Curry"],["J.R. Smith","Klay Thompson","Ray Allen","Steph Curry"]],
+	answers: ["LeBron James","Kevin Durant","Steph Curry","Steph Curry"],
+	images: ["<img class='center-block' src='assets/images/lebron.png'>", "<img class='center-block' src='assets/images/durant.png'>", "<img class='center-block' src='assets/images/curry2.png'>", "<img class='center-block' src='assets/images/curry2.png'>"]
 };
 
 function newTimer() {
@@ -44,19 +44,19 @@ function refresh() {
 
 function winResult() {
 	correctCount++;
-	$(".gameBody").html("<p class='text-center'>Correct! " + "<br>" + questionsObj.answers[indexCounter] + " is the answer.</p>" + questionsObj.images[indexCounter] + "<br><p class='text-center'>Next question coming up!</p>");
+	$(".gameBody").html("<p class='text-center' style='color:green;'>Correct! " + "<br>" + questionsObj.answers[indexCounter] + " is the answer.</p>" + questionsObj.images[indexCounter] + "<br><p class='text-center'>Next question coming up!</p>");
 	setTimeout(refresh, 3000);
 }
 
 function loseResult() {
 	incorrectCount++;
-	$(".gameBody").html("<p class='text-center'>Incorrect! " + "<br>" + questionsObj.answers[indexCounter] + " is the answer.</p>" + questionsObj.images[indexCounter] + "<br><p class='text-center'>Next question coming up!</p>");
+	$(".gameBody").html("<p class='text-center' style='color:red;'>Incorrect! " + "<br>" + questionsObj.answers[indexCounter] + " is the answer.</p>" + questionsObj.images[indexCounter] + "<br><p class='text-center'>Next question coming up!</p>");
 	setTimeout(refresh, 3000);
 }
 
 function timeUpResult() {
 	timeUpCount++;
-	$(".gameBody").html("<p class='text-center'>Time's up! " + "<br>" + questionsObj.answers[indexCounter] + " is the answer.</p>" + questionsObj.images[indexCounter] + "<br><p class='text-center'>Next question coming up!</p>");
+	$(".gameBody").html("<p class='text-center' style='color:red;'>Time's up! " + "<br>" + questionsObj.answers[indexCounter] + " is the answer.</p>" + questionsObj.images[indexCounter] + "<br><p class='text-center'>Next question coming up!</p>");
 	setTimeout(refresh, 3000);
 }
 
@@ -68,7 +68,7 @@ function gameResult() {
 $(document).ready(function() {
 
 	function startScreen() {
-		$(".gameBody").html("<br><h3 class='text-center'>Instructions</h3><p class='text-center'>You have 15 seconds per question to answer. Answer 3 of the 4 questions correctly and win a prize!</p><br><button type='button' class='btn btn-primary btn-lg center-block startButton'>Start!</button>");
+		$(".gameBody").html("<br><h3 class='text-center'>Instructions</h3><p class='text-center'>You have 15 seconds per question to answer.</p><br><button type='button' class='btn btn-primary btn-lg center-block startButton'>Start!</button>");
 	}
 
 	startScreen();
@@ -106,7 +106,7 @@ $(document).ready(function() {
 });
 
 function newQuestion() {
-	$(".gameBody").html("<p class='text-center timer-p'>Time Remaining: <span class='timer'>15</span></p><p class='text-center'>" + questionsObj.questions[indexCounter] + "</p><button type='button' class='btn btn-secondary btn-lg center-block answerOption btn-block'>" + questionsObj.options[indexCounter][0] + "</button><button type='button' class='btn btn-secondary btn-lg center-block answerOption btn-block'>"+questionsObj.options[indexCounter][1]+"</button><button type='button' class='btn btn-secondary btn-lg center-block answerOption btn-block'>"+questionsObj.options[indexCounter][2]+"</button><button type='button' class='btn btn-secondary btn-lg center-block answerOption btn-block'>"+questionsObj.options[indexCounter][3]+"</button>");
+	$(".gameBody").html("<h5 class='text-center'>Time Remaining: <span class='timer'>15</span></h5><h4 class='text-center'>" + questionsObj.questions[indexCounter] + "</h4><button type='button' class='btn btn-secondary btn-lg center-block answerOption btn-block'>" + questionsObj.options[indexCounter][0] + "</button><button type='button' class='btn btn-secondary btn-lg center-block answerOption btn-block'>"+questionsObj.options[indexCounter][1]+"</button><button type='button' class='btn btn-secondary btn-lg center-block answerOption btn-block'>"+questionsObj.options[indexCounter][2]+"</button><button type='button' class='btn btn-secondary btn-lg center-block answerOption btn-block'>"+questionsObj.options[indexCounter][3]+"</button>");
 
 	// Going to try to use .text() jquery to populate answers into buttons rather than always .html()-ing in future
 	// $(".gameBody").replaceWith(divClone);
